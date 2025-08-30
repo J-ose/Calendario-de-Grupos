@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario mensual 2025</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .calendar-container {
+            border: 1px solid #000;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+
+        .month-title {
+            background-color: #000;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .red-row {
+            color: red;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <H3>Grupos A B C D</H3>
+
+    <div id="october" class="calendar-container"></div>
+    <div id="november" class="calendar-container"></div>
+    <div id="december" class="calendar-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const parameters = ['A', 'B', 'C', 'D'];
+            let paramIndex = parameters.indexOf('D');
+
+            function generateCalendar(monthName, month, year, containerId) {
+                const container = document.getElementById(containerId);
+                const table = document.createElement('table');
+
+                const title = document.createElement('div');
+                title.className = 'month-title';
+                title.textContent = monthName;
+                container.appendChild(title);
+
+                const headerRow = document.createElement('tr');
+                const headers = ['Día', 'Fecha', 'Parámetro'];
+                headers.forEach(headerText => {
+                    const th = document.createElement('th');
+                    th.textContent = headerText;
+                    headerRow.appendChild(th);
+                });
+                table.appendChild(headerRow);
+
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const date = new Date(year, month, i);
+                    const dayOfWeek = date.getDay();
+                    const row = document.createElement('tr');
+
+                    // Añadir la clase 'red-row' si es domingo (0)
+                    if (dayOfWeek === 0) {
+                        row.classList.add('red-row');
+                    }
+
+                    const dayCell = document.createElement('td');
+                    dayCell.textContent = weekdays[dayOfWeek];
+                    row.appendChild(dayCell);
+
+                    const dateCell = document.createElement('td');
+                    dateCell.textContent = `${i}/${month + 1}/${year}`;
+                    row.appendChild(dateCell);
+
+                    const paramCell = document.createElement('td');
+                    paramCell.textContent = parameters[paramIndex];
+                    row.appendChild(paramCell);
+                    
+                    paramIndex = (paramIndex + 1) % parameters.length;
+
+                    table.appendChild(row);
+                }
+
+                container.appendChild(table);
+            }
+
+            generateCalendar('Octubre', 9, 2025, 'october');
+            generateCalendar('Noviembre', 10, 2025, 'november');
+            generateCalendar('Diciembre', 11, 2025, 'december');
+        });
+    </script>
+</body>
+</html>
