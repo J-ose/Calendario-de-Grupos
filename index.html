@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario 2025</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20L3uC9oFqYcK0o2K0vj6fE1Vb/eQd/n1N5o5K5q6vH5o5f5o5/w5o=" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         body {
             font-family: sans-serif;
@@ -15,7 +15,7 @@
         .calendar-container {
             border: 1px solid #000;
             width: 100%;
-            max-width: 400px;
+            max-width: 200px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             background-color: white;
         }
@@ -31,7 +31,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 14px;
+            font-size: 10px;
         }
 
         th, td {
@@ -65,13 +65,27 @@
             margin-top: 20px;
         }
 
-        .footer a {
+        .social-icon {
             color: white;
             margin: 0 10px;
             font-size: 24px;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         
+        /* Colores tricolores al pasar el mouse */
+        .social-icon.fb:hover { color: #1877F2; }
+        .social-icon.x:hover { color: #000000; }
+        .social-icon.wa:hover { color: #25D366; }
+        .social-icon.ig:hover { color: #C13584; }
+        .social-icon.tt:hover { color: #69C9D0; }
+
+        @media (min-width: 768px) {
+            .calendar-row {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
@@ -90,9 +104,11 @@
     <footer class="footer">
         <div>
             <p>Síguenos en las redes sociales:</p>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" class="social-icon fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/" target="_blank" class="social-icon x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://wa.me/numerodetelefono" target="_blank" class="social-icon wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" class="social-icon ig" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/" target="_blank" class="social-icon tt" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
         <p class="mt-2">&copy; 2025 Calendario. Todos los derechos reservados.</p>
     </footer>
